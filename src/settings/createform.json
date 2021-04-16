@@ -1,0 +1,143 @@
+{
+    "username": {
+        "maxlength": 15
+    },
+    "photourl": {
+        "maxlength": 200
+    },
+    "socialmedias": {
+        "selectlimit": 5,
+        "list": [
+            {
+                "id": 1,
+                "name": "DeviantArt",
+                "placeholder": {
+                    "en-us": "Username",
+                    "es-mx": "Nombre de usuario"
+                },
+                "icon": "fab fa-deviantart",
+                "maxlength": 15
+            },
+            {
+                "id": 2,
+                "name": "Discord",
+                "placeholder": {
+                    "en-us": "Username#0000",
+                    "es-mx": "Usuario#0000"
+                },
+                "icon": "fab fa-discord",
+                "maxlength": 15
+            },
+            {
+                "id": 3,
+                "name": "Facebook",
+                "placeholder": {
+                    "en-us": "Your Facebook user/page",
+                    "es-mx": "Tu nombre/página de Facebook"
+                },
+                "icon": "fab fa-facebook",
+                "maxlength": 15
+            },
+            {
+                "id": 4,
+                "name": "GitHub",
+                "placeholder": {
+                    "en-us": "Username",
+                    "es-mx": "Nombre de usuario"
+                },
+                "icon": "fab fa-github",
+                "maxlength": 15
+            },
+            {
+                "id": 5,
+                "name": "Instagram",
+                "placeholder": {
+                    "en-us": "@Username",
+                    "es-mx": "@Usuario"
+                },
+                "icon": "fab fa-instagram",
+                "maxlength": 15
+            },
+            {
+                "id": 6,
+                "name": "LinkedIn",
+                "placeholder": {
+                    "en-us": "Your LinkedIn name",
+                    "es-mx": "Tu nombre en LinkedIn"
+                },
+                "icon": "fab fa-linkedin",
+                "maxlength": 15
+            },
+            {
+                "id": 7,
+                "name": "PlayStation",
+                "placeholder": {
+                    "en-us": "PSN Online ID",
+                    "es-mx": "ID Online de PSN"
+                },
+                "icon": "fab fa-playstation",
+                "maxlength": 15
+            },
+            {
+                "id": 8,
+                "name": "Reddit",
+                "placeholder": {
+                    "en-us": "u/Username",
+                    "es-mx": "u/Usuario"
+                },
+                "icon": "fab fa-reddit",
+                "maxlength": 15
+            },
+            {
+                "id": 9,
+                "name": "Steam",
+                "placeholder": {
+                    "en-us": "Username or friend code",
+                    "es-mx": "Usuario o código de amigo"
+                },
+                "icon": "fab fa-steam",
+                "maxlength": 15
+            },
+            {
+                "id": 10,
+                "name": "Twitch",
+                "placeholder": {
+                    "en-us": "Username",
+                    "es-mx": "Nombre de usuario"
+                },
+                "icon": "fab fa-twitch",
+                "maxlength": 15
+            },
+            {
+                "id": 11,
+                "name": "Twitter",
+                "placeholder": {
+                    "en-us": "@Username",
+                    "es-mx": "@Usuario"
+                },
+                "icon": "fab fa-twitter",
+                "maxlength": 15
+            },
+            {
+                "id": 12,
+                "name": "Xbox",
+                "placeholder": {
+                    "en-us": "Gamertag",
+                    "es-mx": "Gamertag"
+                },
+                "icon": "fab fa-xbox",
+                "maxlength": 15
+            },
+            {
+                "id": 13,
+                "name": "YouTube",
+                "placeholder": {
+                    "en-us": "Username or channel name",
+                    "es-mx": "Nombre de usuario o canal"
+                },
+                "icon": "fab fa-youtube",
+                "maxlength": 15
+            }
+        ]
+    }
+}
