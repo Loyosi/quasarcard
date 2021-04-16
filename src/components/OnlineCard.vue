@@ -1,5 +1,5 @@
 <template>
-    <q-card v-tilt="tiltConfig" class="online-card" >
+    <q-card v-tilt="tiltConfig" class="online-card" :style="{ background: cardData.backgroundColor }" >
         <q-card-section class="card-title">
             <p class="title"> {{ $t('cardtitle') }} </p>
         </q-card-section>

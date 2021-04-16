@@ -1,5 +1,5 @@
 <template>
-    <div class="stepper q-pa-md">
+    <div class="stepper q-pa-md" style="background: -webkit-linear-gradient(to right, #fe8c00, #f83600);">
             <q-stepper
             v-model="step"
             vertical
@@ -62,7 +62,6 @@
                         </span>
                         <q-img :src="cardData.profilePicture" class="profile-photo-preview" spinner-color="white"></q-img>
                     </div>
-
                     <q-stepper-navigation>
                     <q-btn @click="step = 3" color="primary" :label="$t('create.continue')" :disable="!isPhotourlValid" />
                     <q-btn flat @click="step = 1" color="primary" :label="$t('create.back')" class="q-ml-sm" />
@@ -124,10 +123,12 @@
                     <q-btn flat @click="step = 2" color="primary" :label="$t('create.back')" class="q-ml-sm" />
                     </q-stepper-navigation>
                 </q-step>
+
                 <q-step
                     :name="4"
                     :title="$t('create.fillsminfo')"
                     icon="fas fa-user-edit"
+                    :done="step > 4"
                 >
                     <div class="q-mb-lg">
                         <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.fillsminfoinfo') }}
@@ -148,8 +149,34 @@
                         </q-input>
                     </div>
                     <q-stepper-navigation>
-                    <q-btn color="primary" @click="GenerateCard" :label="$t('create.generatecard')" :disable="!isSMInfoValid" />
+                    <q-btn @click="step = 5" color="primary" :label="$t('create.continue')" :disable="!isSMInfoValid" />
                     <q-btn flat @click="step = 3" color="primary" :label="$t('create.back')" class="q-ml-sm" />
+                    </q-stepper-navigation>
+                </q-step>
+
+                <q-step
+                    :name="5"
+                    :title="$t('create.pickacolor')"
+                    icon="fas fa-palette"
+                >
+                    <div class="q-mb-lg">
+                        <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.pickacolorinfo') }}
+                    </div>
+                    <div class="q-mb-lg">
+                        <span v-for="(color, index) in colors" :key="index">
+                            <input type="radio" name="color" :id="`color-${index}`" :value="color" v-model="cardData.backgroundColor" class="radio-color-picker" />
+                            <label :for="`color-${index}`" class="label-color-picker" :style="{ background: color }"></label>
+                        </span>
+                    </div>
+                    <div class="flex flex-center column q-mb-lg">
+                        <span>
+                            <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
+                        </span>
+                        <q-card class="online-card-preview" v-tilt="tiltConfig" :style="{ background: cardData.backgroundColor }"></q-card>
+                    </div>
+                    <q-stepper-navigation>
+                    <q-btn color="primary" @click="GenerateCard" :label="$t('create.generatecard')" :disable="!true" />
+                    <q-btn flat @click="step = 4" color="primary" :label="$t('create.back')" class="q-ml-sm" />
                     </q-stepper-navigation>
                 </q-step>
             </q-stepper>
@@ -166,10 +193,19 @@ export default {
       photourlMaxLength: 150,
       socialmediasSelectLimit: 5,
       socialmediaslist: [],
+      colors: [],
       cardData: {
         username: '',
         profilePicture: '',
-        socialMedias: []
+        socialMedias: [],
+        backgroundColor: 'var(--q-color-dark)'
+      },
+      tiltConfig: {
+        max: 25,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.6,
+        gyroscope: true
       }
     }
   },
@@ -182,6 +218,7 @@ export default {
       this.photourlMaxLength = Settings.photourl.maxlength
       this.socialmediasSelectLimit = Settings.socialmedias.selectlimit
       this.socialmediaslist = Settings.socialmedias.list
+      this.colors = Settings.colors
     },
 
     GenerateCard () {
@@ -258,4 +295,44 @@ export default {
     border-radius: 4px;
     border: 2px solid #fff;
 }
+
+.radio-color-picker {
+    display: none;
+}
+
+.radio-color-picker:checked+.label-color-picker {
+    transform: scale(1.25);
+    border: 3px solid white;
+}
+
+.label-color-picker {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+
+.label-color-picker:hover {
+    transform: scale(1.25);
+    transition: transform .2s ease-in-out;
+}
+
+.color-picker {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.online-card-preview {
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid white;
+}
+
 </style>

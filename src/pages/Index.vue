@@ -59,7 +59,8 @@ export default {
             icon: 'fab fa-steam',
             userdata: 'Loyosi'
           }
-        ]
+        ],
+        backgroundColor: 'var(--q-color-dark)'
       }
     }
   }

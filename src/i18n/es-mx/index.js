@@ -24,6 +24,8 @@ export default {
     selectsocialmediasinfo: 'Selecciona cada una de las redes sociales que desees mostrar en tu tarjeta (máximo 5).',
     fillsminfo: 'Llena información de las redes sociales',
     fillsminfoinfo: 'Llena la información para cada una de las redes sociales seleccionadas.',
+    pickacolor: 'Seleccionar un color',
+    pickacolorinfo: 'Seleccionar un color de fondo para la tarjeta.',
     continue: 'Continuar',
     back: 'Regresar',
     generatecard: 'Generar Tarjeta',

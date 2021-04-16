@@ -24,6 +24,8 @@ export default {
     selectsocialmediasinfo: 'Select each social media that you want to display in your card (max 5).',
     fillsminfo: 'Fill social media information',
     fillsminfoinfo: 'Fill the information for each social media selected.',
+    pickacolor: 'Pick a color',
+    pickacolorinfo: 'Pick a background color for the card.',
     continue: 'Continue',
     back: 'Back',
     generatecard: 'Generate Card',
