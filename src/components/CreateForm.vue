@@ -169,10 +169,9 @@
                     </span>
                 </div>
                 <div class="flex flex-center column q-mb-lg">
-                    <span>
-                        <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
-                    </span>
-                    <q-card class="online-card-preview" v-tilt="tiltConfig" :style="{ background: cardData.backgroundColor }"></q-card>
+                    <q-card class="online-card-preview" v-tilt="tiltConfig" :style="{ background: cardData.backgroundColor }">
+                        <q-icon name="far fa-eye"></q-icon> &nbsp; {{ $t('create.preview') }}
+                    </q-card>
                 </div>
                 <q-stepper-navigation>
                 <q-btn color="primary" @click="GenerateCard" :label="$t('create.generatecard')" :disable="!true" />
@@ -333,6 +332,9 @@ export default {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>
