@@ -144,11 +144,20 @@
         "var(--q-color-dark)",
         "linear-gradient(to right, #fe8c00, #f83600)",
         "linear-gradient(to right, #00c6ff, #0072ff)",
-        "linear-gradient(to right, #556270, #ff6b6b)",
-        "linear-gradient(to right, #9d50bb, #6e48aa)",
+        "linear-gradient(to right, #731b1b, #e73737, #731b1b)",
+        "linear-gradient(to right, #ad5389, #3c1053)",
         "linear-gradient(to right, #780206, #061161)",
         "linear-gradient(to right, #f0c27b, #4b1248)",
-        "linear-gradient(to right, #add100, #7b920a)",
-        "linear-gradient(to right, #fbd3e9, #bb377d)"
+        "linear-gradient(to right, #8e2de2, #4a00e0)",
+        "linear-gradient(to right, #f953c6, #b91d73)",
+        "linear-gradient(to right, #8e0e00, #1f1c18)",
+        "linear-gradient(to right, #009fff, #ec2f4b)",
+        "linear-gradient(to right, #3e5151, #decba4)",
+        "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
+        "linear-gradient(to right, #00b09b, #96c93d)",
+        "linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9)",
+        "linear-gradient(to right, #004c00, #007F00, #004c00)",
+        "linear-gradient(to right, #000000, #333333, #000000)",
+        "linear-gradient(to right, #ba8b02, #181818)"
     ]
 }

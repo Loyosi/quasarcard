@@ -1,186 +1,186 @@
 <template>
     <div class="stepper q-pa-md" style="background: -webkit-linear-gradient(to right, #fe8c00, #f83600);">
-            <q-stepper
-            v-model="step"
-            vertical
-            color="primary"
-            animated
+        <q-stepper
+        v-model="step"
+        vertical
+        color="primary"
+        animated
+        >
+            <q-step
+                :name="1"
+                :title="$t('create.username')"
+                icon="settings"
+                :done="step > 1"
             >
-                <q-step
-                    :name="1"
-                    :title="$t('create.username')"
-                    icon="settings"
-                    :done="step > 1"
-                >
-                    <div class="">
-                        <q-input filled bottom-slots v-model="cardData.username" :label="$t('create.username')" counter :maxlength="usernameMaxLength">
-                            <template v-slot:prepend>
-                                <q-icon name="fas fa-user-tag" />
-                            </template>
-                            <template v-slot:append>
-                                <q-btn round flat icon="close" @click="cardData.username = ''" class="btn-delete-field cursor-pointer"></q-btn>
-                            </template>
-                            <template v-slot:hint>
-                                {{ $t('create.usernamehint') }}
-                            </template>
-                        </q-input>
-                    </div>
+                <div class="">
+                    <q-input filled bottom-slots v-model="cardData.username" :label="$t('create.username')" counter :maxlength="usernameMaxLength">
+                        <template v-slot:prepend>
+                            <q-icon name="fas fa-user-tag" />
+                        </template>
+                        <template v-slot:append>
+                            <q-btn round flat icon="close" @click="cardData.username = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                        </template>
+                        <template v-slot:hint>
+                            {{ $t('create.usernamehint') }}
+                        </template>
+                    </q-input>
+                </div>
 
-                    <q-stepper-navigation>
-                    <q-btn @click="step = 2" color="primary" :label="$t('create.continue')" :disable="!isUsernameValid" />
-                    </q-stepper-navigation>
-                </q-step>
+                <q-stepper-navigation>
+                <q-btn @click="step = 2" color="primary" :label="$t('create.continue')" :disable="!isUsernameValid" />
+                </q-stepper-navigation>
+            </q-step>
 
-                <q-step
-                    :name="2"
-                    :title="$t('create.photo')"
-                    :caption="$t('create.requiresurl')"
-                    icon="fas fa-camera"
-                    :done="step > 2"
-                >
-                    <div class="q-mb-lg">
-                        <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.photoinfo') }}
-                    </div>
-                    <div class="q-mb-xl">
-                        <q-input filled bottom-slots v-model="cardData.profilePicture" :label="$t('create.photourl')" counter :maxlength="photourlMaxLength">
-                            <template v-slot:prepend>
-                                <q-icon name="fas fa-camera" />
-                            </template>
-                            <template v-slot:append>
-                                <q-btn round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
-                            </template>
-                            <template v-slot:hint>
-                                <i18n path="create.photohint" tag="span">
-                                    <a href="https://imgur.com/upload" target="_blank">imgur</a>
-                                </i18n>
-                            </template>
-                        </q-input>
-                    </div>
-                    <div class="flex flex-center column q-mb-lg">
-                        <span>
-                            <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
-                        </span>
-                        <q-img :src="cardData.profilePicture" class="profile-photo-preview" spinner-color="white"></q-img>
-                    </div>
-                    <q-stepper-navigation>
-                    <q-btn @click="step = 3" color="primary" :label="$t('create.continue')" :disable="!isPhotourlValid" />
-                    <q-btn flat @click="step = 1" color="primary" :label="$t('create.back')" class="q-ml-sm" />
-                    </q-stepper-navigation>
-                </q-step>
+            <q-step
+                :name="2"
+                :title="$t('create.photo')"
+                :caption="$t('create.requiresurl')"
+                icon="fas fa-camera"
+                :done="step > 2"
+            >
+                <div class="q-mb-lg">
+                    <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.photoinfo') }}
+                </div>
+                <div class="q-mb-xl">
+                    <q-input filled bottom-slots v-model="cardData.profilePicture" :label="$t('create.photourl')" counter :maxlength="photourlMaxLength">
+                        <template v-slot:prepend>
+                            <q-icon name="fas fa-camera" />
+                        </template>
+                        <template v-slot:append>
+                            <q-btn round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                        </template>
+                        <template v-slot:hint>
+                            <i18n path="create.photohint" tag="span">
+                                <a href="https://imgur.com/upload" target="_blank">imgur</a>
+                            </i18n>
+                        </template>
+                    </q-input>
+                </div>
+                <div class="flex flex-center column q-mb-lg">
+                    <span>
+                        <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
+                    </span>
+                    <q-img :src="cardData.profilePicture" class="profile-photo-preview" spinner-color="white"></q-img>
+                </div>
+                <q-stepper-navigation>
+                <q-btn @click="step = 3" color="primary" :label="$t('create.continue')" :disable="!isPhotourlValid" />
+                <q-btn flat @click="step = 1" color="primary" :label="$t('create.back')" class="q-ml-sm" />
+                </q-stepper-navigation>
+            </q-step>
 
-                <q-step
-                    :name="3"
-                    :title="$t('create.selectsocialmedias')"
-                    icon="fas fa-user-plus"
-                    :done="step > 3"
-                >
-                    <div class="q-mb-lg">
-                        <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.selectsocialmediasinfo') }}
-                    </div>
-                    <div class="q-mb-sm">
-                        <q-select
-                            filled
-                            v-model="cardData.socialMedias"
-                            multiple
-                            :options="socialmediaslist"
-                            counter
-                            :max-values="socialmediasSelectLimit"
-                        >
-                            <template v-if="cardData.socialMedias.length > 0" v-slot:append>
-                                <q-btn @click.stop="cardData.socialMedias = []" round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
-                            </template>
-                            <template v-slot:option="scope">
-                                <q-item
-                                    v-bind="scope.itemProps"
-                                    v-on="scope.itemEvents"
-                                >
-                                    <q-item-section avatar>
-                                        <q-icon :name="scope.opt.icon" />
-                                    </q-item-section>
-                                    <q-item-section>
-                                        <q-item-label v-html="scope.opt.name" />
-                                        <q-item-label caption>{{ scope.opt.placeholder[language] }}</q-item-label>
-                                    </q-item-section>
-                                </q-item>
-                            </template>
-                            <template v-slot:selected-item="scope">
-                                <q-chip
-                                    removable
-                                    @remove="scope.removeAtIndex(scope.index)"
-                                    :tabindex="scope.tabindex"
-                                    color="white"
-                                    text-color="primary"
-                                    class="q-ma-none"
-                                >
-                                    <q-avatar color="primary" text-color="white" :icon="scope.opt.icon" />
-                                    {{ scope.opt.name }}
-                                </q-chip>
-                            </template>
-                        </q-select>
-                    </div>
-                    <q-stepper-navigation>
-                    <q-btn @click="step = 4" color="primary" :label="$t('create.continue')" :disable="!isSelectedSMValid" />
-                    <q-btn flat @click="step = 2" color="primary" :label="$t('create.back')" class="q-ml-sm" />
-                    </q-stepper-navigation>
-                </q-step>
+            <q-step
+                :name="3"
+                :title="$t('create.selectsocialmedias')"
+                icon="fas fa-user-plus"
+                :done="step > 3"
+            >
+                <div class="q-mb-lg">
+                    <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.selectsocialmediasinfo') }}
+                </div>
+                <div class="q-mb-sm">
+                    <q-select
+                        filled
+                        v-model="cardData.socialMedias"
+                        multiple
+                        :options="socialmediaslist"
+                        counter
+                        :max-values="socialmediasSelectLimit"
+                    >
+                        <template v-if="cardData.socialMedias.length > 0" v-slot:append>
+                            <q-btn @click.stop="cardData.socialMedias = []" round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                        </template>
+                        <template v-slot:option="scope">
+                            <q-item
+                                v-bind="scope.itemProps"
+                                v-on="scope.itemEvents"
+                            >
+                                <q-item-section avatar>
+                                    <q-icon :name="scope.opt.icon" />
+                                </q-item-section>
+                                <q-item-section>
+                                    <q-item-label v-html="scope.opt.name" />
+                                    <q-item-label caption>{{ scope.opt.placeholder[language] }}</q-item-label>
+                                </q-item-section>
+                            </q-item>
+                        </template>
+                        <template v-slot:selected-item="scope">
+                            <q-chip
+                                removable
+                                @remove="scope.removeAtIndex(scope.index)"
+                                :tabindex="scope.tabindex"
+                                color="white"
+                                text-color="primary"
+                                class="q-ma-none"
+                            >
+                                <q-avatar color="primary" text-color="white" :icon="scope.opt.icon" />
+                                {{ scope.opt.name }}
+                            </q-chip>
+                        </template>
+                    </q-select>
+                </div>
+                <q-stepper-navigation>
+                <q-btn @click="step = 4" color="primary" :label="$t('create.continue')" :disable="!isSelectedSMValid" />
+                <q-btn flat @click="step = 2" color="primary" :label="$t('create.back')" class="q-ml-sm" />
+                </q-stepper-navigation>
+            </q-step>
 
-                <q-step
-                    :name="4"
-                    :title="$t('create.fillsminfo')"
-                    icon="fas fa-user-edit"
-                    :done="step > 4"
-                >
-                    <div class="q-mb-lg">
-                        <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.fillsminfoinfo') }}
-                    </div>
-                    <div class="q-mb-lg" v-for="socialmedia in cardData.socialMedias" :key="socialmedia.id">
-                        <q-input filled bottom-slots
-                        v-model="socialmedia.userdata" :label="socialmedia.name"
-                        counter :maxlength="socialmedia.maxlength">
-                            <template v-slot:prepend>
-                                <q-icon :name="socialmedia.icon" />
-                            </template>
-                            <template v-slot:append>
-                                <q-btn round flat icon="close" @click="socialmedia.userdata = ''" class="btn-delete-field cursor-pointer"></q-btn>
-                            </template>
-                            <template v-slot:hint>
-                                {{ socialmedia.placeholder[language] }}
-                            </template>
-                        </q-input>
-                    </div>
-                    <q-stepper-navigation>
-                    <q-btn @click="step = 5" color="primary" :label="$t('create.continue')" :disable="!isSMInfoValid" />
-                    <q-btn flat @click="step = 3" color="primary" :label="$t('create.back')" class="q-ml-sm" />
-                    </q-stepper-navigation>
-                </q-step>
+            <q-step
+                :name="4"
+                :title="$t('create.fillsminfo')"
+                icon="fas fa-user-edit"
+                :done="step > 4"
+            >
+                <div class="q-mb-lg">
+                    <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.fillsminfoinfo') }}
+                </div>
+                <div class="q-mb-lg" v-for="socialmedia in cardData.socialMedias" :key="socialmedia.id">
+                    <q-input filled bottom-slots
+                    v-model="socialmedia.userdata" :label="socialmedia.name"
+                    counter :maxlength="socialmedia.maxlength">
+                        <template v-slot:prepend>
+                            <q-icon :name="socialmedia.icon" />
+                        </template>
+                        <template v-slot:append>
+                            <q-btn round flat icon="close" @click="socialmedia.userdata = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                        </template>
+                        <template v-slot:hint>
+                            {{ socialmedia.placeholder[language] }}
+                        </template>
+                    </q-input>
+                </div>
+                <q-stepper-navigation>
+                <q-btn @click="step = 5" color="primary" :label="$t('create.continue')" :disable="!isSMInfoValid" />
+                <q-btn flat @click="step = 3" color="primary" :label="$t('create.back')" class="q-ml-sm" />
+                </q-stepper-navigation>
+            </q-step>
 
-                <q-step
-                    :name="5"
-                    :title="$t('create.pickacolor')"
-                    icon="fas fa-palette"
-                >
-                    <div class="q-mb-lg">
-                        <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.pickacolorinfo') }}
-                    </div>
-                    <div class="q-mb-lg">
-                        <span v-for="(color, index) in colors" :key="index">
-                            <input type="radio" name="color" :id="`color-${index}`" :value="color" v-model="cardData.backgroundColor" class="radio-color-picker" />
-                            <label :for="`color-${index}`" class="label-color-picker" :style="{ background: color }"></label>
-                        </span>
-                    </div>
-                    <div class="flex flex-center column q-mb-lg">
-                        <span>
-                            <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
-                        </span>
-                        <q-card class="online-card-preview" v-tilt="tiltConfig" :style="{ background: cardData.backgroundColor }"></q-card>
-                    </div>
-                    <q-stepper-navigation>
-                    <q-btn color="primary" @click="GenerateCard" :label="$t('create.generatecard')" :disable="!true" />
-                    <q-btn flat @click="step = 4" color="primary" :label="$t('create.back')" class="q-ml-sm" />
-                    </q-stepper-navigation>
-                </q-step>
-            </q-stepper>
-        </div>
+            <q-step
+                :name="5"
+                :title="$t('create.pickacolor')"
+                icon="fas fa-palette"
+            >
+                <div class="q-mb-lg">
+                    <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.pickacolorinfo') }}
+                </div>
+                <div class="q-mb-lg">
+                    <span v-for="(color, index) in colors" :key="index">
+                        <input type="radio" name="color" :id="`color-${index}`" :value="color" v-model="cardData.backgroundColor" class="radio-color-picker" />
+                        <label :for="`color-${index}`" class="label-color-picker" :style="{ background: color }"></label>
+                    </span>
+                </div>
+                <div class="flex flex-center column q-mb-lg">
+                    <span>
+                        <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
+                    </span>
+                    <q-card class="online-card-preview" v-tilt="tiltConfig" :style="{ background: cardData.backgroundColor }"></q-card>
+                </div>
+                <q-stepper-navigation>
+                <q-btn color="primary" @click="GenerateCard" :label="$t('create.generatecard')" :disable="!true" />
+                <q-btn flat @click="step = 4" color="primary" :label="$t('create.back')" class="q-ml-sm" />
+                </q-stepper-navigation>
+            </q-step>
+        </q-stepper>
+    </div>
 </template>
 
 <script>
