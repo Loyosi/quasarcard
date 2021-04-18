@@ -35,7 +35,7 @@ export default {
         max: 25,
         speed: 400,
         glare: true,
-        'max-glare': 0.55,
+        'max-glare': 0.4,
         gyroscope: true
       }
     }
@@ -133,8 +133,8 @@ export default {
 }
 
 .js-tilt-glare-inner {
-    width: 700px !important;
-    height: 700px !important;
+    width: 500px !important;
+    height: 500px !important;
 }
 
 @media screen and (min-width: 1300px) {
@@ -167,6 +167,11 @@ export default {
         height: 128px;
         max-width: 128px;
         max-height: 128px;
+    }
+
+    .js-tilt-glare-inner {
+        width: 700px !important;
+        height: 700px !important;
     }
 }
 </style>

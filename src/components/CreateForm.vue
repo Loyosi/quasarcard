@@ -124,7 +124,7 @@
                         :max-values="socialmediasSelectLimit"
                     >
                         <template v-if="cardData.socialMedias.length > 0" v-slot:append>
-                            <q-btn @click.stop="cardData.socialMedias = []" round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                            <q-btn @click.stop="cardData.socialMedias = []" round flat icon="fas fa-trash-alt" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
                         </template>
                         <template v-slot:option="scope">
                             <q-item
@@ -244,7 +244,7 @@ export default {
         max: 25,
         speed: 400,
         glare: true,
-        'max-glare': 0.55,
+        'max-glare': 0.4,
         gyroscope: true
       },
       photoTab: 'photoupload'
@@ -340,7 +340,8 @@ export default {
 <style>
 
 .stepper {
-    max-width: 450px;
+    width: 350px;
+    max-width: 350px;
 }
 
 .btn-delete-field:hover {
@@ -415,8 +416,26 @@ export default {
 }
 
 .js-tilt-glare-inner {
-    width: 700px !important;
-    height: 700px !important;
+    width: 500px !important;
+    height: 500px !important;
 }
 
+@media screen and (min-width: 400px) {
+    .stepper {
+        width: 450px;
+        max-width: 450px;
+    }
+
+    .js-tilt-glare-inner {
+        width: 700px !important;
+        height: 700px !important;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .js-tilt-glare-inner {
+        width: 700px !important;
+        height: 700px !important;
+    }
+}
 </style>

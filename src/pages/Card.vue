@@ -1,6 +1,6 @@
 <template>
     <q-page padding class="flex flex-center column">
-        <div class="row q-mb-lg">
+        <div class="row q-mb-xl">
             <router-link to="/" style="text-decoration: none; color: inherit;">
                 <q-btn color="primary" size="lg" :label="$t('create.return')"></q-btn>
             </router-link>
