@@ -420,15 +420,10 @@ export default {
     height: 500px !important;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 550px) {
     .stepper {
         width: 450px;
         max-width: 450px;
-    }
-
-    .js-tilt-glare-inner {
-        width: 700px !important;
-        height: 700px !important;
     }
 }
 
