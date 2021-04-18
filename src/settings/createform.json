@@ -2,8 +2,10 @@
     "username": {
         "maxlength": 15
     },
-    "photourl": {
-        "maxlength": 200
+    "photo": {
+        "maxlength": 200,
+        "maxwidth": 128,
+        "maxheight": 128
     },
     "socialmedias": {
         "selectlimit": 5,

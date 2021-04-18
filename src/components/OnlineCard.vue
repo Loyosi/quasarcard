@@ -35,7 +35,7 @@ export default {
         max: 25,
         speed: 400,
         glare: true,
-        'max-glare': 0.6,
+        'max-glare': 0.55,
         gyroscope: true
       }
     }
@@ -47,9 +47,9 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap');
 .online-card {
     /* position: relative; */
-    min-width: 350ox;
-    min-height: 250px;
-    max-width: 350ox;
+    width: 350px;
+    height: 250px;
+    max-width: 350px;
     max-height: 250px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -112,7 +112,10 @@ export default {
 }
 
 .profile-photo {
+    width: 96px;
+    height: 96px;
     max-width: 96px;
+    max-height: 96px;
     border-radius: 4px;
     border: 2px solid #fff;
 }
@@ -129,10 +132,15 @@ export default {
     font-size: 16px;
 }
 
+.js-tilt-glare-inner {
+    width: 700px !important;
+    height: 700px !important;
+}
+
 @media screen and (min-width: 1300px) {
     .online-card {
-        min-width: 500px;
-        min-height: 314px;
+        width: 500px;
+        height: 314px;
         max-width: 500px;
         max-height: 314px;
     }
@@ -155,7 +163,10 @@ export default {
     }
 
     .profile-photo {
+        width: 128px;
+        height: 128px;
         max-width: 128px;
+        max-height: 128px;
     }
 }
 </style>

@@ -34,28 +34,65 @@
             <q-step
                 :name="2"
                 :title="$t('create.photo')"
-                :caption="$t('create.requiresurl')"
                 icon="fas fa-camera"
                 :done="step > 2"
             >
+
                 <div class="q-mb-lg">
                     <q-icon name="fas fa-info-circle"></q-icon> {{ $t('create.photoinfo') }}
                 </div>
-                <div class="q-mb-xl">
-                    <q-input filled bottom-slots v-model="cardData.profilePicture" :label="$t('create.photourl')" counter :maxlength="photourlMaxLength">
-                        <template v-slot:prepend>
-                            <q-icon name="fas fa-camera" />
-                        </template>
-                        <template v-slot:append>
-                            <q-btn round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
-                        </template>
-                        <template v-slot:hint>
-                            <i18n path="create.photohint" tag="span">
-                                <a href="https://imgur.com/upload" target="_blank">imgur</a>
+                <q-tabs
+                    v-model="photoTab"
+                    inline-label
+                >
+                    <q-tab name="photoupload" icon="far fa-image" :label="$t('create.photoupload')" />
+                    <q-tab name="photourl" icon="fas fa-globe" :label="$t('create.photourl')" />
+                </q-tabs>
+                 <q-tab-panels v-model="photoTab" animated>
+                    <q-tab-panel name="photoupload">
+                        <div class="q-mb-lg">
+                            <q-icon name="fas fa-info-circle"></q-icon>
+                            <i18n path="create.photouploadinfo" tag="span">
+                                {{photosize.maxwidth}}x{{photosize.maxheight}}
                             </i18n>
-                        </template>
-                    </q-input>
-                </div>
+                        </div>
+                        <div class="tab-panel q-mb-lg">
+                            <image-uploader
+                            :preview="false"
+                            :maxWidth="photosize.maxwidth"
+                            :maxHeight="photosize.maxheight"
+                            className='fileinput'
+                            :debug="1"
+                            doNotResize="gif"
+                            outputFormat="string"
+                            @input="setImage"
+                            >
+                                <label for="fileInput" slot="upload-label" class="upload-label">
+                                    <q-icon name="fas fa-image" size="md"></q-icon> &nbsp;
+                                    <span class="upload-caption">{{ $t('create.photoupload') }}</span>
+                                </label>
+                            </image-uploader>
+                        </div>
+                    </q-tab-panel>
+
+                    <q-tab-panel name="photourl">
+                        <div class="tab-panel q-mb-xl">
+                            <q-input filled bottom-slots v-model="cardData.profilePicture" :label="$t('create.photourl')" counter :maxlength="photourlMaxLength">
+                                <template v-slot:prepend>
+                                    <q-icon name="fas fa-camera" />
+                                </template>
+                                <template v-slot:append>
+                                    <q-btn round flat icon="close" @click="cardData.profilePicture = ''" class="btn-delete-field cursor-pointer"></q-btn>
+                                </template>
+                                <template v-slot:hint>
+                                    <i18n path="create.photohint" tag="span">
+                                        <a href="https://imgur.com/upload" target="_blank">imgur</a>
+                                    </i18n>
+                                </template>
+                            </q-input>
+                        </div>
+                    </q-tab-panel>
+                </q-tab-panels>
                 <div class="flex flex-center column q-mb-lg">
                     <span>
                         <q-icon name="far fa-eye"></q-icon> {{ $t('create.preview') }}
@@ -190,6 +227,10 @@ export default {
       step: 1,
       usernameMaxLength: 20,
       photourlMaxLength: 150,
+      photosize: {
+        maxwidth: 200,
+        maxheight: 200
+      },
       socialmediasSelectLimit: 5,
       socialmediaslist: [],
       colors: [],
@@ -203,9 +244,10 @@ export default {
         max: 25,
         speed: 400,
         glare: true,
-        'max-glare': 0.6,
+        'max-glare': 0.55,
         gyroscope: true
-      }
+      },
+      photoTab: 'photoupload'
     }
   },
   created () {
@@ -214,7 +256,9 @@ export default {
   methods: {
     SetupSettings () {
       this.usernameMaxLength = Settings.username.maxlength
-      this.photourlMaxLength = Settings.photourl.maxlength
+      this.photourlMaxLength = Settings.photo.maxlength
+      this.photosize.maxwidth = Settings.photo.maxwidth
+      this.photosize.maxheight = Settings.photo.maxheight
       this.socialmediasSelectLimit = Settings.socialmedias.selectlimit
       this.socialmediaslist = Settings.socialmedias.list
       this.colors = Settings.colors
@@ -235,6 +279,22 @@ export default {
         textColor: 'white',
         timeout: 2000
       })
+    },
+
+    setImage (output) {
+      if (typeof output === 'string') this.cardData.profilePicture = output
+      else this.showInvalidFileNotif()
+    },
+
+    showInvalidFileNotif () {
+      this.$q.notify({
+        progress: true,
+        message: this.$t('create.invalidfile'),
+        icon: 'fas fa-times',
+        color: 'red',
+        textColor: 'white',
+        timeout: 2000
+      })
     }
   },
   computed: {
@@ -248,7 +308,7 @@ export default {
     },
 
     isPhotourlValid () {
-      if (this.cardData.profilePicture !== '' && this.cardData.profilePicture.length <= this.photourlMaxLength) return true
+      if (this.cardData.profilePicture !== '') return true
       else return false
     },
 
@@ -335,6 +395,28 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.fileinput {
+    display: none;
+}
+
+.tab-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.upload-label {
+    cursor: pointer;
+}
+
+.upload-caption {
+    font-size: 1em;
+}
+
+.js-tilt-glare-inner {
+    width: 700px !important;
+    height: 700px !important;
 }
 
 </style>

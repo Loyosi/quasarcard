@@ -15,7 +15,7 @@
     </div>
 
     <div class="row">
-      <router-link to="Create">
+      <router-link to="Create" style="text-decoration: none; color: inherit;">
         <q-btn color="primary" size="lg" :label="$t('index.createnow')"></q-btn>
       </router-link>
     </div>
